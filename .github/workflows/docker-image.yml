@@ -18,5 +18,6 @@ jobs:
       run: docker pull bkimminich/juice-shop
 
     - name: Scan with Trivy
-      run: trivy image bkimminich/juice-shop
-
+      uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+      with:
+        image-ref: 'bkimminich/juice-shop'
