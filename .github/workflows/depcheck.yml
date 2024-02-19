@@ -3,7 +3,7 @@ name: Dependency Check Sarif
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
 
