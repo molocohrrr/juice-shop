@@ -24,10 +24,9 @@ jobs:
 
     - name: Run Dependency Check
       run: |
-        docker run owasp/dependency-check:latest --nvdApiKey $NVD_API_KEY --format SARIF --out result.sarif --scan .
+        docker run --rm -v $PWD:/usr/src/app --user $(id -u):$(id -g) -w /usr/src/app owasp/dependency-check:latest --format SARIF --out /usr/src/app/result.sarif --nvdApiKey $NVD_API_KEY --scan .
         ls -a
-
     - name: Upload scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: '/src/result.sarif'
+        sarif_file: 'result.sarif'
